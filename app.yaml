@@ -1,19 +1,28 @@
+# using cloud.google.com/console use the "project id" for your application
+# id.
 application: kagga-idea-92420
 version: 1
 runtime: python27
 api_version: 1
 threadsafe: true
 
-handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
+# Handlers tell App Engine how to route requests to your application.
 
+handlers:
+#- url: /favicon\.ico
+#  static_files: favicon.ico
+#  upload: favicon\.ico
+
+# This handler routes requests to your APIs to your Endpoints code.
+# See https://developers.google.com/appengine/docs/python/endpoints/
 - url:/_ah/spi/.*
   script: helloworld_api.APPLICATION
 
 libraries:
+# The pycrypto library is used for OAuth 2, and is also a requirement for
+# APIs that wish to authenticate users.
 - name: pycrypto
   version: latest
+# You must include the Endpoints library if you wish to serve an API.
 - name: endpoints
   version: 1.0
